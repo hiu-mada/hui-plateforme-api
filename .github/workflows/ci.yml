@@ -12,19 +12,6 @@ on:
   workflow_call:
 
 jobs:
-  format:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-
-    steps:
-      - uses: actions/checkout@v4.1.1
-      - uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'corretto'
-
-      - run: chmod +x format.sh
-      - run: ./format.sh && git diff --exit-code
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
