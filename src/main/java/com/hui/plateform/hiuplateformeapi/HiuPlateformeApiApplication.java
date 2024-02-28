@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class HiuPlateformeApiApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(HiuPlateformeApiApplication.class, args);
-    }
-
+  public static void main(String[] args) {
+    SpringApplication.run(HiuPlateformeApiApplication.class, args);
+  }
 }
