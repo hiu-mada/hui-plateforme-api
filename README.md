@@ -1,15 +1,16 @@
-# HIU-Plateforme
+# HIU-Plateform-api
+[![CI](https://github.com/hiu-mada/hui-plateforme-api/actions/workflows/ci.yml/badge.svg)](https://github.com/hiu-mada/hui-plateforme-api/actions/workflows/ci.yml)
 
-This guide will help you set up and run the HIU-Plateforme project locally. Please ensure that you have Java version 17 or higher installed on your machine before proceeding.
+HIU Plateform-api  is a Spring-based project that aims to provide a platform for evaluating cybersecurity challenges.
 
 ## Prerequisites
-
 Before you begin, make sure you have the following prerequisites installed on your local machine:
 
 - Java Development Kit (JDK) 17 or higher
 - Gradle build tool
+- Spring boot
 
-## Getting Started
+## Installation
 
 Follow the steps below to run the project locally:
 
