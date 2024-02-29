@@ -20,7 +20,7 @@ jobs:
           postgresql version: '11'
       - name: Check database connection
         run: |
-          docker run --rm --network host postgres psql -h localhost -U postgres -c "SELECT 1"
+          docker run --rm --network host postgres psql -h  127.0.0.1 -U postgres -c "SELECT 1"
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
