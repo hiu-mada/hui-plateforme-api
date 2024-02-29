@@ -13,8 +13,9 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Setter
 @ToString
 @Table(name = "discipline")
-public class discipline {
+public class Discipline {
      @Id
+     @GeneratedValue(strategy = IDENTITY)
      private String id;
 
      private String name;
