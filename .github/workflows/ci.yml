@@ -12,6 +12,15 @@ on:
   workflow_call:
 
 jobs:
+  test-db:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: harmon758/postgresql-action@v1
+        with:
+          postgresql version: '11'
+      - name: Check database connection
+        run: |
+          docker run --rm --network host postgres psql -h localhost -U postgres -c "SELECT 1"
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
