@@ -34,7 +34,7 @@ jobs:
 
       - name: Check database connection
         run: |
-          psql -h localhost -U postgres -d testdb -c "SELECT 1"
+          psql -h 5432:5432 -U postgres -d testdb -c "SELECT 1"
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
