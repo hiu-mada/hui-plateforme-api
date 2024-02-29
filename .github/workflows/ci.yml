@@ -14,14 +14,27 @@ on:
 jobs:
   test-db:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: testdb
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3
+
     steps:
-    - name: Set up PostgreSQL
-      uses: postgresql/setup-postgres@v2
-      with:
-        postgresql-version: '13'  
-    - name: Check database connection
-      run: |
-        psql -h localhost -U postgres -c "SELECT 1"
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Wait for PostgreSQL to start
+        run: sleep 10
+
+      - name: Check database connection
+        run: |
+          psql -h localhost -U postgres -d testdb -c "SELECT 1"
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
