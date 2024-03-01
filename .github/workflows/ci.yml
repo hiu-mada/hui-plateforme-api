@@ -12,30 +12,24 @@ on:
   workflow_call:
 
 jobs:
-#  test-db:
-#    runs-on: ubuntu-latest
-#    services:
-#      postgres:
-#        image: postgres:latest
-#        env:
-#          POSTGRES_USER: postgres
-#          POSTGRES_PASSWORD: password
-#          POSTGRES_DB: testdb
-#        ports:
-#          - 5432:5432
-#        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3
-#
-#    steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v2
-#
-#      - name: Wait for PostgreSQL to start
-#        run: sleep 10
-#
-#      - name: Check database connection
-#        run: |
-#          psql -h 5432 -U postgres -d testdb -c "SELECT 1"
+  Setup_jdk:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/setup-java@v3
+          with:
+            java-version: '17'
+            distribution: 'corretto'
+  migrations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout/@v4.1.1
+      - uses: red-gate/flyway-hub-migration-test@v4
+        with:
+          projectName: hui-plateforme-api
+          engine: postgres-12
+          migrationDirs: src/main/resources/db/migration  
   build:
+    needs: Setup_jdk
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -46,4 +40,17 @@ jobs:
           distribution: 'corretto'
       - run: chmod +x gradlew
       - run: ./gradlew build
-
+  test:
+    needs: Setup_jdk
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+      - run: chmod +x gradlew
+      - run: ./gradlew test
+env:
+  FLYWAYHUB_ACCESS_TOKEN: ${{ secrets.FLYWAY_HUB_ACCESS_TOKEN }}
