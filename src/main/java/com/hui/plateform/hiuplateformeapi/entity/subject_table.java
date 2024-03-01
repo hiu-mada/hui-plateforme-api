@@ -12,7 +12,7 @@ import lombok.*;
 @Setter
 @ToString
 @Table(name = "subject")
-public class Subject {
+public class subject_table {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
