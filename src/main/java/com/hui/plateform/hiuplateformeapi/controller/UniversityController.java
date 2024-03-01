@@ -1,7 +1,7 @@
 package com.hui.plateform.hiuplateformeapi.controller;
 
 import com.hui.plateform.hiuplateformeapi.Service.UniversityService;
-import com.hui.plateform.hiuplateformeapi.entity.university_table;
+import com.hui.plateform.hiuplateformeapi.entity.University;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,20 +14,20 @@ public class UniversityController {
     UniversityService universityService;
 
     @GetMapping("/")
-    public List<university_table>getAllUniversity(){
+    public List<University>getAllUniversity(){
         return universityService.getAllUniversity();
     }
     @GetMapping("/{id}")
-    public university_table getUniversityById(@PathVariable String id){
+    public University getUniversityById(@PathVariable String id){
         return universityService.getById(id);
     }
     @PostMapping("/")
-    public university_table createUniversity(@RequestBody university_table university){
+    public University createUniversity(@RequestBody University university){
         return universityService.createUniversity(university);
     }
 
     @PutMapping("/{id}")
-    public university_table updateUniversity(@PathVariable String id, @RequestBody university_table university){
+    public University updateUniversity(@PathVariable String id, @RequestBody University university){
         university.setId(id);
         return  universityService.updateUniversity(university);
     }

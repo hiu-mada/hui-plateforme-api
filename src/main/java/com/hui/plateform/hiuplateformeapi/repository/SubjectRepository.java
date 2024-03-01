@@ -1,7 +1,7 @@
 package com.hui.plateform.hiuplateformeapi.repository;
 
-import com.hui.plateform.hiuplateformeapi.entity.subject_table;
+import com.hui.plateform.hiuplateformeapi.entity.Subject;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SubjectRepository extends JpaRepository<subject_table, String> {
+public interface SubjectRepository extends JpaRepository<Subject, String> {
 }

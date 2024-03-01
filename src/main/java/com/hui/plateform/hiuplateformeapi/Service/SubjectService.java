@@ -1,6 +1,6 @@
 package com.hui.plateform.hiuplateformeapi.Service;
 
-import com.hui.plateform.hiuplateformeapi.entity.subject_table;
+import com.hui.plateform.hiuplateformeapi.entity.Subject;
 import com.hui.plateform.hiuplateformeapi.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,19 +12,19 @@ public class SubjectService {
     @Autowired
     private SubjectRepository subjectRepository;
 
-    public List<subject_table> getAllSubject(){
+    public List<Subject> getAllSubject(){
         return subjectRepository.findAll();
     }
 
-    public subject_table getSubjectById(String id){
+    public Subject getSubjectById(String id){
         return  subjectRepository.findById(id).orElse(null);
     }
 
-    public subject_table createSubject(subject_table subject){
+    public Subject createSubject(Subject subject){
         return subjectRepository.save(subject);
     }
 
-    public subject_table updateSubject(subject_table subject){
+    public Subject updateSubject(Subject subject){
         return subjectRepository.save(subject);
     }
 

@@ -11,12 +11,12 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@Table(name = "university_table")
-public class university_table {
-
+@Table(name = "subject_table")
+public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-    private String name;
+    private String title;
     private String description;
+    private Float max_score;
 }

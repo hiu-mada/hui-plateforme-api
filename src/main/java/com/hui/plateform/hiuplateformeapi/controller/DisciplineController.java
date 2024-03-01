@@ -1,7 +1,7 @@
 package com.hui.plateform.hiuplateformeapi.controller;
 
 import com.hui.plateform.hiuplateformeapi.Service.DisciplineService;
-import com.hui.plateform.hiuplateformeapi.entity.discipline_table;
+import com.hui.plateform.hiuplateformeapi.entity.Discipline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,22 +14,22 @@ public class DisciplineController {
     private DisciplineService disciplineService;
 
     @GetMapping("/")
-    public List<discipline_table> getAllDisciplines(){
+    public List<Discipline> getAllDisciplines(){
         return disciplineService.getAllDisciplines();
     }
 
     @PostMapping("/")
-    public discipline_table createDiscipline(@RequestBody discipline_table discipline){
+    public Discipline createDiscipline(@RequestBody Discipline discipline){
         return disciplineService.createDiscipline(discipline);
     }
 
     @GetMapping("/{id}")
-    public discipline_table getDisciplineById(@PathVariable String id){
+    public Discipline getDisciplineById(@PathVariable String id){
         return disciplineService.getDisciplineById(id);
     }
 
     @PutMapping("/{id}")
-    public discipline_table updateDiscipline(@PathVariable String id, @RequestBody discipline_table discipline){
+    public Discipline updateDiscipline(@PathVariable String id, @RequestBody Discipline discipline){
         discipline.setId(id);
         return disciplineService.updateDiscipline(discipline);
     }
