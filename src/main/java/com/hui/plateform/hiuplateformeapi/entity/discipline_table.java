@@ -13,7 +13,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Setter
 @ToString
 @Table(name = "discipline")
-public class Discipline {
+public class discipline_table {
      @Id
      @GeneratedValue(strategy = IDENTITY)
      private String id;
