@@ -11,7 +11,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@Table(name = "subject")
+@Table(name = "subject_table")
 public class subject_table {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

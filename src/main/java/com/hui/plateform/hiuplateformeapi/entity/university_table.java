@@ -11,8 +11,8 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@Table(name = "university")
-public class University {
+@Table(name = "university_table")
+public class university_table {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
