@@ -12,23 +12,16 @@ on:
   workflow_call:
 
 jobs:
-  Migration_test:
+  test-migrations:
+    name: Test flyway migration scripts
     runs-on: ubuntu-latest
-    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4.1.1
-      - uses: actions/setup-java@v3
+      - uses: actions/checkout/@v4.1.1
+      - uses: red-gate/flyway-hub-migration-test@v4
         with:
-          java-version: '17'
-          distribution: 'corretto'
-      - uses: red-gate/flyway-hub-migration-test@v1
-        with:
-          projectName: Hiu-plateform-api
-          engine: PostgreSQL (v13.2)
-          migrationDirs: src/main/resources/db/migration
-      - run: chmod +x gradlew
-      - run: ./gradlew build
-
+          projectName: hui-plateforme-api
+          engine: postgres-12
+          migrationDirs: src/main/resources/db/migration  
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -40,4 +33,5 @@ jobs:
           distribution: 'corretto'
       - run: chmod +x gradlew
       - run: ./gradlew build
-
+env:
+  FLYWAYHUB_ACCESS_TOKEN: ${{ secrets.FLYWAY_HUB_ACCESS_TOKEN }}
