@@ -695,6 +695,10 @@ components:
         profile_picture:
           type: string
           format: byte
+        id_challenger:
+          type: string
+          example:
+            $ref: "#/components/schemas/Challengers_team"
     University:
       type: object
       required:
@@ -750,12 +754,19 @@ components:
           type: string
         slogan:
           type: string
+        id_university:
+          type: string
+          example:
+            $ref: "#/components/schemas/University"
+        id_discipline:
+          type: string
+          example:
+            $ref: "#/components/schemas/Discipline"
     Response:
       type: object
       required:
         - id
         - response
-        - subject
       properties:
         id:
           type: integer
@@ -764,8 +775,14 @@ components:
           type: string
         commentary:
           type: string
-        subject:
-          $ref: "#/components/schemas/Subject"
+        id_challenger_team:
+          type: string
+          example:
+            $ref: "#/components/schemas/Challengers_team"
+        id_subject:
+          type: string
+          example:
+            $ref: "#/components/schemas/Subject"
     Vote:
       type: object
       required:
