@@ -25,6 +25,12 @@ public class User {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "profile_picture")
-    private String profile_picture;
+    private String profilePicture;
+
+    @Column(name = "id_challenger")
+    private String idChallenger;
 }
