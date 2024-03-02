@@ -11,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Table(name = "vote_table")
 public class Vote {
 

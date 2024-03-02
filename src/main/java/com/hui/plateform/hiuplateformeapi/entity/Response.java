@@ -5,21 +5,21 @@ import lombok.*;
 
 @Entity
 @Builder
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @ToString
-@Table(name = "challenger_team_table")
-public class ChallengerTeam {
+@Table(name = "response_table")
+public class Response {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private String id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "response")
+    private String response;
 
-    @Column(name = "slogant")
-    private String slogant;
+    @Column(name = "commentary")
+    private String commentary;
 }
