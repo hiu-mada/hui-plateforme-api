@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/university")
 public class UniversityController {
     @Autowired
-    UniversityService universityService;
+    private UniversityService universityService;
 
     @GetMapping("/")
     public List<University>getAllUniversity(){
