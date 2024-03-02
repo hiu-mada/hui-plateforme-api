@@ -20,7 +20,7 @@ public class DisciplineController {
 
     @PostMapping("/")
     public Discipline createDiscipline(@RequestBody Discipline discipline){
-        return disciplineService.createDiscipline(discipline);
+        return disciplineService.createUpdateDiscipline(discipline);
     }
 
     @GetMapping("/{id}")
@@ -31,7 +31,7 @@ public class DisciplineController {
     @PutMapping("/{id}")
     public Discipline updateDiscipline(@PathVariable String id, @RequestBody Discipline discipline){
         discipline.setId(id);
-        return disciplineService.updateDiscipline(discipline);
+        return disciplineService.createUpdateDiscipline(discipline);
     }
 
     @DeleteMapping("/{id}")

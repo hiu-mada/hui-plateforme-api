@@ -23,13 +23,13 @@ public class UniversityController {
     }
     @PostMapping("/")
     public University createUniversity(@RequestBody University university){
-        return universityService.createUniversity(university);
+        return universityService.createUpdateUniversity(university);
     }
 
     @PutMapping("/{id}")
     public University updateUniversity(@PathVariable String id, @RequestBody University university){
         university.setId(id);
-        return  universityService.updateUniversity(university);
+        return  universityService.createUpdateUniversity(university);
     }
 
     @DeleteMapping("/{id}")

@@ -24,13 +24,13 @@ public class UserController {
 
     @PostMapping("/")
     public User createUser(@RequestBody User user){
-        return userService.createUser(user);
+        return userService.createUpdateUser(user);
     }
 
     @PutMapping("/{id}")
     public User updateUser(@PathVariable String id, @RequestBody User user){
         user.setId(id);
-        return userService.updateUser(user);
+        return userService.createUpdateUser(user);
     }
 
     @DeleteMapping("/{id}")

@@ -25,13 +25,13 @@ public class SubjectController {
 
     @PostMapping("/")
     public Subject createSubject(@RequestBody Subject subject){
-        return subjectService.createSubject(subject);
+        return subjectService.createUpdateSubject(subject);
     }
 
     @PutMapping("/{id}")
     public Subject updateSubject(@PathVariable String id, @RequestBody Subject subject){
         subject.setId(id);
-        return  subjectService.updateSubject(subject);
+        return  subjectService.createUpdateSubject(subject);
     }
 
     @DeleteMapping("/{id}")

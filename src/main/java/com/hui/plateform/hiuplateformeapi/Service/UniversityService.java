@@ -19,12 +19,8 @@ public class UniversityService {
         return  universityRepository.findById(id).orElse(null);
     }
 
-    public University createUniversity(University university){
+    public University createUpdateUniversity(University university){
         return universityRepository.save(university);
-    }
-
-    public University updateUniversity(University university){
-        return  universityRepository.save(university);
     }
 
     public void  deleteUniversityById(String id){

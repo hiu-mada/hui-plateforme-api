@@ -18,10 +18,7 @@ public class UserService {
     public User getUserById(String id){
         return userRepository.getReferenceById(id);
     }
-    public User createUser(User user){
-        return userRepository.save(user);
-    }
-    public User updateUser(User user){
+    public User createUpdateUser(User user){
         return userRepository.save(user);
     }
     public void deleteUser(String id){
