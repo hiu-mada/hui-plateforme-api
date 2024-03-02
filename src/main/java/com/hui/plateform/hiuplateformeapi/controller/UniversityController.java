@@ -14,12 +14,12 @@ public class UniversityController {
     private UniversityService universityService;
 
     @GetMapping("/")
-    public List<University>getAllUniversity(){
+    public List<University> getAllUniversity(){
         return universityService.getAllUniversity();
     }
     @GetMapping("/{id}")
     public University getUniversityById(@PathVariable String id){
-        return universityService.getById(id);
+        return universityService.getUniversityById(id);
     }
     @PostMapping("/")
     public University createUniversity(@RequestBody University university){

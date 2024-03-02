@@ -15,7 +15,7 @@ public class UniversityService {
     public List<University> getAllUniversity(){
         return universityRepository.findAll();
     }
-    public University getById(String id){
+    public University getUniversityById(String id){
         return  universityRepository.findById(id).orElse(null);
     }
 
