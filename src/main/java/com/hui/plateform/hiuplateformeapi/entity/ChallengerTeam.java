@@ -22,4 +22,10 @@ public class ChallengerTeam {
 
     @Column(name = "slogant")
     private String slogant;
+
+    @Column(name = "id_university")
+    private String idUniversity;
+
+    @Column(name= "id_discipline")
+    private String idDiscipline;
 }
