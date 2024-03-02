@@ -22,4 +22,10 @@ public class Response {
 
     @Column(name = "commentary")
     private String commentary;
+
+    @Column(name = "id_challenger_team")
+    private String idChallengerTeam;
+
+    @Column(name = "id_subject")
+    private String idSubject;
 }
