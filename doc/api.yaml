@@ -695,8 +695,6 @@ components:
         profile_picture:
           type: string
           format: byte
-        challenger_team:
-          $ref: "#/components/schemas/Challengers_team"
     University:
       type: object
       required:
@@ -728,7 +726,6 @@ components:
       required:
         - id
         - title
-        - max_score
       properties:
         id:
           type: integer
@@ -745,9 +742,6 @@ components:
       required:
         - id
         - name
-        - university
-        - members
-        - discipline
       properties:
         id:
           type: integer
@@ -756,14 +750,6 @@ components:
           type: string
         slogan:
           type: string
-        university:
-          $ref: "#/components/schemas/University"
-        discipline:
-          items:
-            $ref: "#/components/schemas/Discipline"
-        response:
-          items:
-            $ref: "#/components/schemas/Response"
     Response:
       type: object
       required:
@@ -783,14 +769,14 @@ components:
     Vote:
       type: object
       required:
-        - id
-        - challengers_team
-        - user
+        - id_challenger
+        - id_user
       properties:
-        id:
-          type: integer
-          format: int64
-        user:
-          $ref: "#/components/schemas/User"
-        challengers_team:
-          $ref: "#/components/schemas/Challengers_team"
+        id_user:
+          type: string
+          example:
+            $ref: "#/components/schemas/User"
+        id_challenger:
+          type: string
+          example:
+            $ref: "#/components/schemas/Challengers_team"
