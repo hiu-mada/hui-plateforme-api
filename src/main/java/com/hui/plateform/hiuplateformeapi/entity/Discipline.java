@@ -12,12 +12,16 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 @ToString
-@Table(name = "discipline")
+@Table(name = "discipline_table")
 public class Discipline {
      @Id
+     @Column(name = "id")
      @GeneratedValue(strategy = IDENTITY)
      private String id;
 
+     @Column(name = "name")
      private String name;
+
+     @Column(name = "description")
      private String description;
 }

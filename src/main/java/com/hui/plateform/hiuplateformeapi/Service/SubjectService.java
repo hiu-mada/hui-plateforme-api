@@ -20,14 +20,9 @@ public class SubjectService {
         return  subjectRepository.findById(id).orElse(null);
     }
 
-    public Subject createSubject(Subject subject){
+    public Subject createUpdateSubject(Subject subject){
         return subjectRepository.save(subject);
     }
-
-    public Subject updateSubject(Subject subject){
-        return subjectRepository.save(subject);
-    }
-
     public void deleteSubjectById(String id){
         subjectRepository.deleteById(id);
     }

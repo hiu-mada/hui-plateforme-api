@@ -11,25 +11,25 @@ import java.util.List;
 @RequestMapping("/university")
 public class UniversityController {
     @Autowired
-    UniversityService universityService;
+    private UniversityService universityService;
 
     @GetMapping("/")
-    public List<University>getAllUniversity(){
+    public List<University> getAllUniversity(){
         return universityService.getAllUniversity();
     }
     @GetMapping("/{id}")
     public University getUniversityById(@PathVariable String id){
-        return universityService.getById(id);
+        return universityService.getUniversityById(id);
     }
     @PostMapping("/")
     public University createUniversity(@RequestBody University university){
-        return universityService.createUniversity(university);
+        return universityService.createUpdateUniversity(university);
     }
 
     @PutMapping("/{id}")
     public University updateUniversity(@PathVariable String id, @RequestBody University university){
         university.setId(id);
-        return  universityService.updateUniversity(university);
+        return  universityService.createUpdateUniversity(university);
     }
 
     @DeleteMapping("/{id}")

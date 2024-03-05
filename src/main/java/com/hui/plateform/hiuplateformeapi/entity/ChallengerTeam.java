@@ -1,19 +1,17 @@
 package com.hui.plateform.hiuplateformeapi.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
-@Table(name = "university_table")
-public class University {
-
+@Table(name = "challenger_team_table")
+public class ChallengerTeam {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +20,12 @@ public class University {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "slogant")
+    private String slogant;
+
+    @Column(name = "id_university")
+    private String idUniversity;
+
+    @Column(name= "id_discipline")
+    private String idDiscipline;
 }

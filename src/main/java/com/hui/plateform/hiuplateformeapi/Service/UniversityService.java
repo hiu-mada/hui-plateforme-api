@@ -15,16 +15,12 @@ public class UniversityService {
     public List<University> getAllUniversity(){
         return universityRepository.findAll();
     }
-    public University getById(String id){
+    public University getUniversityById(String id){
         return  universityRepository.findById(id).orElse(null);
     }
 
-    public University createUniversity(University university){
+    public University createUpdateUniversity(University university){
         return universityRepository.save(university);
-    }
-
-    public University updateUniversity(University university){
-        return  universityRepository.save(university);
     }
 
     public void  deleteUniversityById(String id){

@@ -2,7 +2,6 @@ package com.hui.plateform.hiuplateformeapi.controller;
 
 import com.hui.plateform.hiuplateformeapi.Service.SubjectService;
 import com.hui.plateform.hiuplateformeapi.entity.Subject;
-import com.hui.plateform.hiuplateformeapi.entity.University;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,13 +25,13 @@ public class SubjectController {
 
     @PostMapping("/")
     public Subject createSubject(@RequestBody Subject subject){
-        return subjectService.createSubject(subject);
+        return subjectService.createUpdateSubject(subject);
     }
 
     @PutMapping("/{id}")
     public Subject updateSubject(@PathVariable String id, @RequestBody Subject subject){
         subject.setId(id);
-        return  subjectService.updateSubject(subject);
+        return  subjectService.createUpdateSubject(subject);
     }
 
     @DeleteMapping("/{id}")
