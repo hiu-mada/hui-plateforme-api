@@ -9,9 +9,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 @Table(name = "vote_table")
 public class Vote {
     @Id
