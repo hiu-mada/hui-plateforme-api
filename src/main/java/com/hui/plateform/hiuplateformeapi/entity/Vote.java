@@ -14,6 +14,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 public class Vote {
     @Id
     @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id")
     private String id;
 
     @Column(name = "id_challenger")
