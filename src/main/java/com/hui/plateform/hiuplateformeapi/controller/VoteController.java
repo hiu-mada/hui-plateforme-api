@@ -30,4 +30,12 @@ public class VoteController {
     public void  deleteVoteById(@PathVariable String id){
         voteService.deleteVoteById(id);
     }
+    @GetMapping("/count-by-team")
+    public List<Object[]> countVotesByIdTeam() {
+        return voteService.getVotePerTeam();
+    }
+    @GetMapping("/count-by-team/{id}")
+    public int countVoteOfTeam(@PathVariable String id){
+        return voteService.getVoteOfTeam(id);
+    }
 }
