@@ -3,7 +3,7 @@ info:
   title: HIU-PLATEFORM-API
   description: |-
     it's a cybersec challenge evaluation platform
-  version: 2.0.0
+  version: 2.0.1
 paths:
   /university:
     post:
@@ -830,6 +830,8 @@ components:
         - id_challenger
         - id_user
       properties:
+        id:
+          type: string
         id_user:
           type: string
           example:
