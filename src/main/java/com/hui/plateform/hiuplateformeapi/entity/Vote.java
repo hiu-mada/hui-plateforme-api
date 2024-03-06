@@ -1,11 +1,11 @@
 package com.hui.plateform.hiuplateformeapi.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
+import static jakarta.persistence.GenerationType.IDENTITY;
+
+@Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,6 +14,9 @@ import lombok.*;
 @ToString
 @Table(name = "vote_table")
 public class Vote {
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    private String id;
 
     @Column(name = "id_challenger")
     private String idChallenger;
