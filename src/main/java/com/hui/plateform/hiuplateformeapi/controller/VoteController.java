@@ -2,6 +2,7 @@ package com.hui.plateform.hiuplateformeapi.controller;
 
 import com.hui.plateform.hiuplateformeapi.Service.VoteService;
 import com.hui.plateform.hiuplateformeapi.entity.Vote;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,8 +10,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vote")
+@AllArgsConstructor
 public class VoteController {
-    @Autowired
     private VoteService voteService;
 
     @GetMapping("/")

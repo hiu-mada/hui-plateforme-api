@@ -20,7 +20,6 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-    @Autowired
     private UserRepository userRepository;
 
     public List<User> getAllUser(){

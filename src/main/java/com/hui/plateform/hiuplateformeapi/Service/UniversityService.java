@@ -2,14 +2,15 @@ package com.hui.plateform.hiuplateformeapi.Service;
 
 import com.hui.plateform.hiuplateformeapi.entity.University;
 import com.hui.plateform.hiuplateformeapi.repository.UniversityRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class UniversityService {
-    @Autowired
     private UniversityRepository universityRepository;
 
     public List<University> getAllUniversity(){

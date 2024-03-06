@@ -2,14 +2,15 @@ package com.hui.plateform.hiuplateformeapi.Service;
 
 import com.hui.plateform.hiuplateformeapi.entity.Discipline;
 import com.hui.plateform.hiuplateformeapi.repository.DisciplineRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class DisciplineService {
-    @Autowired
     private DisciplineRepository disciplineRepository;
 
     public List<Discipline> getAllDisciplines(){
