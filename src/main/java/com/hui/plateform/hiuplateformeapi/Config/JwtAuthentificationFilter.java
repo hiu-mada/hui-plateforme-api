@@ -20,11 +20,16 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-@RequiredArgsConstructor
 public class JwtAuthentificationFilter extends OncePerRequestFilter {
 
      private  final JwtService jwtService;
      private UserDetailsService userDetailsService;
+
+    public JwtAuthentificationFilter(JwtService jwtService, UserDetailsService userDetailsService) {
+        this.jwtService = jwtService;
+        this.userDetailsService = userDetailsService;
+    }
+
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,@NonNull HttpServletResponse response,@NonNull FilterChain filterChain) throws ServletException, IOException {
     final String authHeader = request.getHeader("Authorization");

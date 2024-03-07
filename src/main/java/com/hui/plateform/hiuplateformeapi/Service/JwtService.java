@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.Value;
 import org.hibernate.annotations.DialectOverride;
 import org.hibernate.type.descriptor.java.ObjectJavaType;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +21,8 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
-    private static final String SECRET_KEY = "4a3057427175345a33564f31324f5479737453374f336848613045643761756a";
+
+    private static final String SECRET_KEY = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -66,6 +68,6 @@ public boolean isTokenExpired(String token){
     }
     private Key getSignInKey(){
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
-        return Keys.hmacShaKeyFor(keyBytes);
+        return Keys.secretKeyFor(SignatureAlgorithm.HS256);
     }
 }
