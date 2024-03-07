@@ -2,14 +2,15 @@ package com.hui.plateform.hiuplateformeapi.Service;
 
 import com.hui.plateform.hiuplateformeapi.entity.ChallengerTeam;
 import com.hui.plateform.hiuplateformeapi.repository.ChallengerTeamRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ChallengerTeamService {
-    @Autowired
     private ChallengerTeamRepository challengerTeamRepository;
 
     public List<ChallengerTeam> getAllTeam(){

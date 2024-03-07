@@ -2,6 +2,7 @@ package com.hui.plateform.hiuplateformeapi.controller;
 
 import com.hui.plateform.hiuplateformeapi.Service.DisciplineService;
 import com.hui.plateform.hiuplateformeapi.entity.Discipline;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,8 +10,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/disciplines")
+@AllArgsConstructor
 public class DisciplineController {
-    @Autowired
     private DisciplineService disciplineService;
 
     @GetMapping("/")

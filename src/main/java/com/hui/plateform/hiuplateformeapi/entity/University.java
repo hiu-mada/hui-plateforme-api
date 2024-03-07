@@ -8,9 +8,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 @Table(name = "university_table")
 public class University {
 

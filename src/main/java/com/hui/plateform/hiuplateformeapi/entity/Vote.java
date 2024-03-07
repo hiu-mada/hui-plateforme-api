@@ -3,19 +3,22 @@ package com.hui.plateform.hiuplateformeapi.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+
+import static jakarta.persistence.GenerationType.IDENTITY;
+
+
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 @Table(name = "vote_table")
 public class Vote {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id")
+    private String id;
+
     @Column(name = "id_challenger")
     private String idChallenger;
 

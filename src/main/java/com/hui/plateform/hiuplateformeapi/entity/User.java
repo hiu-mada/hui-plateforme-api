@@ -13,9 +13,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 @Table(name = "user_table")
 public class  User implements UserDetails {
     @Id

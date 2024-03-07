@@ -2,6 +2,7 @@ package com.hui.plateform.hiuplateformeapi.controller;
 
 import com.hui.plateform.hiuplateformeapi.Service.VoteService;
 import com.hui.plateform.hiuplateformeapi.entity.Vote;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,8 +10,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vote")
+@AllArgsConstructor
 public class VoteController {
-    @Autowired
     private VoteService voteService;
 
     @GetMapping("/")
@@ -28,5 +29,13 @@ public class VoteController {
     @DeleteMapping("/{id}")
     public void  deleteVoteById(@PathVariable String id){
         voteService.deleteVoteById(id);
+    }
+    @GetMapping("/count-by-team")
+    public List<Object[]> countVotesByIdTeam() {
+        return voteService.getVotePerTeam();
+    }
+    @GetMapping("/count-by-team/{id}")
+    public int countVoteOfTeam(@PathVariable String id){
+        return voteService.getVoteOfTeam(id);
     }
 }

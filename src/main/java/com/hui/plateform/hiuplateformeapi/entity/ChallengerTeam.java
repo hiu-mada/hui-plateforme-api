@@ -5,11 +5,9 @@ import lombok.*;
 
 @Entity
 @Builder
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Table(name = "challenger_team_table")
 public class ChallengerTeam {
     @Id

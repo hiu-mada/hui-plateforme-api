@@ -3,7 +3,7 @@ info:
   title: HIU-PLATEFORM-API
   description: |-
     it's a cybersec challenge evaluation platform
-  version: 1.0.0
+  version: 2.0.1
 paths:
   /university:
     post:
@@ -555,6 +555,48 @@ paths:
                   $ref: '#/components/schemas/Vote'
         '400':
           description: Invalid status value
+  /vote/count-by-team:
+    get:
+      tags:
+        - Vote
+      summary: Retrieve vote filtered by team
+      description: Retrieve a list of vote filtered by team
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Count_vote"
+        '400':
+          description: Invalid status value
+  /vote/count-by-team/{id}:
+    get:
+      tags:
+        - Vote
+      summary: Retrieve team's vote
+      description: Retrieve team's vote
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: id of challenger team
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Count_vote"
+        '400':
+          description: Invalid status value
   /user:
     post:
       tags:
@@ -615,8 +657,7 @@ paths:
             application/json:
               schema:
                 type: array
-                items:
-                  $ref: '#/components/schemas/User'
+
         '400':
           description: Invalid status value
     put:
@@ -789,6 +830,8 @@ components:
         - id_challenger
         - id_user
       properties:
+        id:
+          type: string
         id_user:
           type: string
           example:
@@ -797,3 +840,12 @@ components:
           type: string
           example:
             $ref: "#/components/schemas/Challengers_team"
+    Count_vote:
+      type: object
+      properties:
+        id_challenger:
+          type: string
+          example:
+            $ref: "#/components/schemas/Challengers_team"
+        vote:
+          type: integer
