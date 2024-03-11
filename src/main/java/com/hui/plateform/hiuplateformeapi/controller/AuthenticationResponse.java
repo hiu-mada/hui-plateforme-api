@@ -1,14 +1,14 @@
 package com.hui.plateform.hiuplateformeapi.controller;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+
+@Getter
 public class AuthenticationResponse {
-    private String token;
+    private final String token;
+
+    public AuthenticationResponse(String token) {
+        this.token = token;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.hui.plateform.hiuplateformeapi.controller;
 
 
 import com.hui.plateform.hiuplateformeapi.Service.UserService;
+import com.hui.plateform.hiuplateformeapi.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,18 +18,18 @@ import javax.naming.AuthenticationException;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
-    private final UserService userService;
+    private final AuthenticationService service;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody RegisterRequest request
+            @RequestBody User request
     ){
-return  ResponseEntity.ok(userService.register(request));
+      return ResponseEntity.ok(service.register(request));
     }
 
     @PostMapping("/authentication")
     public ResponseEntity<AuthenticationResponse> authentication(
-            @RequestBody AuthenticationRequest request){
-       return  ResponseEntity.ok(userService.authenticate(request));
+            @RequestBody User request){
+       return  ResponseEntity.ok(service.authenticate(request));
     }
 }

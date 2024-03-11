@@ -1,6 +1,7 @@
 package com.hui.plateform.hiuplateformeapi.Config;
 
 import com.hui.plateform.hiuplateformeapi.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,31 +17,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@RequiredArgsConstructor
-public class ApplicationConfig {
+@AllArgsConstructor
+public class ApplicationConfig{
 
-    private final UserRepository repository;
-    @Bean
-    public UserDetailsService userDetailsService(){
-        return username -> repository.findByEmail(username)
-                .orElseThrow(()-> new UsernameNotFoundException("User not found"));
-    }
 
-    @Bean
-    public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService());
-        authenticationProvider.setPasswordEncoder(passWordEncoder());
-        return authenticationProvider;
-    }
-
-    @Bean
-    public PasswordEncoder passWordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager (AuthenticationConfiguration config) throws Exception{
-        return config.getAuthenticationManager();
-    }
 }
