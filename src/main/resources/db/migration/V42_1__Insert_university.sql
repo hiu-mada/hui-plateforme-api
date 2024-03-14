@@ -1,5 +1,5 @@
 INSERT INTO "university_table" VALUES ('ESPA','Ecole Supérieur Polytechnique d''Antananarivo');
-INSERT INTO "university_table" VALUES ('ENI,lorem ipsum','Ecole National de l''Informatique')
+INSERT INTO "university_table" VALUES ('ENI,lorem ipsum','Ecole National de l''Informatique');
 INSERT INTO "university_table" VALUES ('EMIT','Ecole de Management et Innovation Technologique ');
 INSERT INTO "university_table" VALUES ('ASJA','Athénée Saint Joseph Antsirabe');
 INSERT INTO "university_table" VALUES ('MISA','Mathématique Informatique et Statistiques Appliquées');
