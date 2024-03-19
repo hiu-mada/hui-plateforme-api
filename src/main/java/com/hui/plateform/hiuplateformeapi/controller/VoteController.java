@@ -10,11 +10,10 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/vote")
 public class VoteController {
     private VoteService voteService;
 
-    @GetMapping("/")
+    @GetMapping("/vote")
     public List<Vote> getAllVote(){
         return voteService.getAllVote();
     }
@@ -22,19 +21,19 @@ public class VoteController {
     public Vote createVote(@RequestBody Vote vote){
         return voteService.createVote(vote);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/vote/{id}")
     public Vote getVoteById(@PathVariable String id){
         return voteService.getVoteById(id);
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/vote/{id}")
     public void  deleteVoteById(@PathVariable String id){
         voteService.deleteVoteById(id);
     }
-    @GetMapping("/count-by-team")
+    @GetMapping("/vote/count-by-team")
     public List<Object[]> countVotesByIdTeam() {
         return voteService.getVotePerTeam();
     }
-    @GetMapping("/count-by-team/{id}")
+    @GetMapping("/vote/count-by-team/{id}")
     public int countVoteOfTeam(@PathVariable String id){
         return voteService.getVoteOfTeam(id);
     }

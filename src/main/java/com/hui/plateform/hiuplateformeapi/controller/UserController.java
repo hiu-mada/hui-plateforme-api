@@ -10,32 +10,31 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/user")
 public class UserController {
     private UserService userService;
 
-    @GetMapping("/")
+    @GetMapping("/user")
     public List<User> getAllUser(){
         return userService.getAllUser();
     }
-    @GetMapping("/{id}")
-    public User getUserById(@PathVariable String id){
+    @GetMapping("/user/{id}")
+    public User getUserById(@PathVariable("id") String id){
         return userService.getUserById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("/user")
     public User createUser(@RequestBody User user){
         return userService.createUpdateUser(user);
     }
 
-    @PutMapping("/{id}")
-    public User updateUser(@PathVariable String id, @RequestBody User user){
+    @PutMapping("/user/{id}")
+    public User updateUser(@PathVariable("id") String id, @RequestBody User user){
         user.setId(id);
         return userService.createUpdateUser(user);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteUserById(@PathVariable String id){
+    @DeleteMapping("/user/{id}")
+    public void deleteUserById(@PathVariable("id") String id){
         userService.deleteUser(id);
     }
 }
