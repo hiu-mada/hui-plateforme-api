@@ -1,15 +1,13 @@
-package com.hui.plateform.hiuplateformeapi.controller;
+package com.hui.plateform.hiuplateformeapi.Service;
 
 
-import com.hui.plateform.hiuplateformeapi.Service.JwtService;
+import com.hui.plateform.hiuplateformeapi.entity.dto.AuthenticationResponse;
 import com.hui.plateform.hiuplateformeapi.entity.User;
 import com.hui.plateform.hiuplateformeapi.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 
 @Service

@@ -1,4 +1,4 @@
-package com.hui.plateform.hiuplateformeapi.controller;
+package com.hui.plateform.hiuplateformeapi.entity.dto;
 
 
 import lombok.AllArgsConstructor;
