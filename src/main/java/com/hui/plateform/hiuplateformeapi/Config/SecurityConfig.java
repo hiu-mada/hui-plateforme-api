@@ -45,7 +45,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT,"/user/**").denyAll()
                         .requestMatchers(HttpMethod.PUT,"/vote/**").denyAll()
                         .requestMatchers(HttpMethod.DELETE,"/vote/**").denyAll()
-                        .requestMatchers( "/auth/**","/register","/vote/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/user/**" ).permitAll()
+                        .requestMatchers( "/auth/**","/vote/**").permitAll()
                         .anyRequest().authenticated()
 
                 )
