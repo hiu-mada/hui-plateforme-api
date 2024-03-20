@@ -9,29 +9,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/team")
+
 @AllArgsConstructor
 public class ChallengerTeamController {
     private ChallengerTeamService challengerTeamService;
 
-    @GetMapping("/")
+    @GetMapping("/team")
     public List<ChallengerTeam> getAllTeam(){
         return challengerTeamService.getAllTeam();
     }
-    @PostMapping("/")
+    @PostMapping("/team")
     public ChallengerTeam createTeam(@RequestBody ChallengerTeam team){
         return challengerTeamService.createUpdateTeam(team);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/team/{id}")
     public ChallengerTeam getTeamById(@PathVariable String id){
         return challengerTeamService.getTeamById(id);
     }
-    @PutMapping("/{id}")
+    @PutMapping("/team/{id}")
     public ChallengerTeam updateTeam(@PathVariable String id, @RequestBody ChallengerTeam team){
         team.setId(id);
         return challengerTeamService.createUpdateTeam(team);
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/team/{id}")
     public void deleteTeamById(@PathVariable String id){
         challengerTeamService.deleteTeam(id);
     }

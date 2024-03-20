@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -40,8 +41,13 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers( "/auth/**","/register","/user/**","/vote/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE,"/user/**").denyAll()
+                        .requestMatchers(HttpMethod.PUT,"/user/**").denyAll()
+                        .requestMatchers(HttpMethod.PUT,"/vote/**").denyAll()
+                        .requestMatchers(HttpMethod.DELETE,"/vote/**").denyAll()
+                        .requestMatchers( "/auth/**","/register","/vote/**").permitAll()
                         .anyRequest().authenticated()
+
                 )
                 .userDetailsService(userDetailsImp.userDetailsService())
                 .exceptionHandling(e -> e.accessDeniedHandler(accessDeniedHandler).authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
