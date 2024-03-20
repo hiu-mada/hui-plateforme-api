@@ -3,7 +3,10 @@ info:
   title: HIU-PLATEFORM-API
   description: |-
     it's a cybersec challenge evaluation plateform
-  version: 3.0.0
+  version: 3.1.1
+servers:
+  - url: http://localhost:8080
+
 paths:
   /auth/register:
     post:
@@ -130,8 +133,7 @@ paths:
           required: true
           description: ID of the user to find
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: Successful operation
@@ -152,6 +154,8 @@ paths:
     put:
       tags:
         - User
+      security:
+        - jwt-token: [ ]
       summary: Update an user by ID
       description: Update an user by ID
       operationId: updateUser
@@ -161,8 +165,7 @@ paths:
           required: true
           description: ID of the user to be updated
           schema:
-            type: integer
-            format: int64
+            type: string
       requestBody:
         description: User object to update
         required: true
@@ -193,6 +196,8 @@ paths:
     delete:
       tags:
         - User
+      security:
+        - jwt-token: [ ]
       summary: Delete a user by ID
       description: Delete a user by ID
       operationId: deleteUser
@@ -202,8 +207,7 @@ paths:
           required: true
           description: ID of the user to be deleted
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: Operation successful, the user has been deleted
@@ -284,8 +288,7 @@ paths:
           required: true
           description: ID of the team to find
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: Successful operation
@@ -308,6 +311,8 @@ paths:
     put:
       tags:
         - Challengers team
+      security:
+        - jwt-token: [ ]
       summary: Update a team by ID
       description: Update a team by ID
       operationId: updateTeam
@@ -317,8 +322,7 @@ paths:
           required: true
           description: ID of the team to be updated
           schema:
-            type: integer
-            format: int64
+            type: string
       requestBody:
         description: team object to update
         required: true
@@ -349,6 +353,8 @@ paths:
     delete:
       tags:
         - Challengers team
+      security:
+        - jwt-token: [ ]
       summary: Delete a team by ID
       description: Delete a team by ID
       operationId: deleteTeam
@@ -358,8 +364,7 @@ paths:
           required: true
           description: ID of the team to be deleted
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: Operation successful, the team has been deleted
@@ -377,6 +382,8 @@ paths:
     post:
       tags:
         - Discipline
+      security:
+        - jwt-token: [ ]
       summary: Add a new discipline
       description: Add a new discipline
       operationId: addDiscipline
@@ -440,8 +447,7 @@ paths:
           required: true
           description: ID of the discipline to find
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: Successful operation
@@ -464,6 +470,8 @@ paths:
     put:
       tags:
         - Discipline
+      security:
+        - jwt-token: [ ]
       summary: Update a discipline by ID
       description: Update a discipline by ID
       operationId: updateDiscipline
@@ -473,8 +481,7 @@ paths:
           required: true
           description: ID of the discipline to be updated
           schema:
-            type: integer
-            format: int64
+            type: string
       requestBody:
         description: Discipline object to update
         required: true
@@ -505,6 +512,8 @@ paths:
     delete:
       tags:
         - Discipline
+      security:
+        - jwt-token: [ ]
       summary: Delete a discipline by ID
       description: Delete a discipline by ID
       operationId: deleteDiscipline
@@ -514,8 +523,7 @@ paths:
           required: true
           description: ID of the discipline to be deleted
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: Operation successful, the discipline has been deleted
@@ -584,10 +592,44 @@ paths:
           $ref: '#/components/responses/429'
         500:
           $ref: '#/components/responses/500'
+  /response/{id}:
+    get:
+      tags:
+        - Response
+      summary: Retrieve team's responses
+      description: Retrieve a list of team's responses
+      parameters:
+        - in: path
+          name: id
+          description: team's id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Response'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
   /subject:
     post:
       tags:
         - Subject
+      security:
+        - jwt-token: [ ]
       summary: Add a new subject
       description: Add a new subject
       operationId: addSubject
@@ -651,8 +693,7 @@ paths:
           required: true
           description: ID of the subject to find
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: Successful operation
@@ -675,6 +716,8 @@ paths:
     put:
       tags:
         - Subject
+      security:
+        - jwt-token: [ ]
       summary: Update a subject by ID
       description: Update a subject by ID
       operationId: updateSubject
@@ -684,8 +727,7 @@ paths:
           required: true
           description: ID of the subject to be updated
           schema:
-            type: integer
-            format: int64
+            type: string
       requestBody:
         description: Subject object to update
         required: true
@@ -725,8 +767,7 @@ paths:
           required: true
           description: ID of the subject to be deleted
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: Operation successful, the subject has been deleted
@@ -807,8 +848,7 @@ paths:
           required: true
           description: ID of the university to find
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: Successful operation
@@ -831,6 +871,8 @@ paths:
     put:
       tags:
         - University
+      security:
+        - jwt-token: [ ]
       summary: Update an university by ID
       description: Update an university by ID
       operationId: updateUniversity
@@ -840,8 +882,7 @@ paths:
           required: true
           description: ID of the university to be updated
           schema:
-            type: integer
-            format: int64
+            type: string
       requestBody:
         description: University object to update
         required: true
@@ -872,6 +913,8 @@ paths:
     delete:
       tags:
         - University
+      security:
+        - jwt-token: [ ]
       summary: Delete an university by ID
       description: Delete an university by ID
       operationId: deleteUniversity
@@ -881,8 +924,7 @@ paths:
           required: true
           description: ID of the university to be deleted
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: Operation successful, the university has been deleted
@@ -1009,10 +1051,9 @@ paths:
           $ref: '#/components/responses/429'
         500:
           $ref: '#/components/responses/500'
+
 components:
   schemas:
-    Token:
-      type: string
     User:
       type: object
       required:
@@ -1033,7 +1074,7 @@ components:
         profile_picture:
           type: string
           format: byte
-        id_challenger:
+        id_team:
           type: string
           example:
             $ref: "#/components/schemas/Challengers_team"
