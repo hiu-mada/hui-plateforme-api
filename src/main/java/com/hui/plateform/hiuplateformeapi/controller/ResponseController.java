@@ -31,7 +31,7 @@ public class ResponseController {
         response.setId(id);
         return responseService.createUpdateResponse(response);
     }
-    @DeleteMapping("/{i}")
+    @DeleteMapping("/{id}")
     public void deleteResponseById(@PathVariable String id){
         responseService.deleteResponse(id);
     }
