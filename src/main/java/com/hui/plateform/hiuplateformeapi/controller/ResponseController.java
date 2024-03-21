@@ -2,6 +2,7 @@ package com.hui.plateform.hiuplateformeapi.controller;
 
 import com.hui.plateform.hiuplateformeapi.Service.ResponseService;
 import com.hui.plateform.hiuplateformeapi.entity.Response;
+import com.hui.plateform.hiuplateformeapi.entity.dto.TeamListGroupBySubject;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,5 +35,9 @@ public class ResponseController {
     @DeleteMapping("/{id}")
     public void deleteResponseById(@PathVariable String id){
         responseService.deleteResponse(id);
+    }
+    @GetMapping("/team-by-subject")
+    public List<TeamListGroupBySubject> getTeamListGroupBySubject(){
+        return responseService.getTeamListGroupBySubject();
     }
 }
