@@ -3,7 +3,7 @@ info:
   title: HIU-PLATEFORM-API
   description: |-
     it's a cybersec challenge evaluation plateform
-  version: 3.1.1
+  version: 3.2.0
 servers:
   - url: http://localhost:8080
 
@@ -624,6 +624,31 @@ paths:
           $ref: '#/components/responses/429'
         500:
           $ref: '#/components/responses/500'
+  /response/team-by-subject:
+    get:
+      tags:
+        - Response
+      summary: Get team list group by subject they answered
+      description: Get team list group by subject they answered
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamListGroupBySubject'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
   /subject:
     post:
       tags:
@@ -1148,8 +1173,7 @@ components:
         - response
       properties:
         id:
-          type: integer
-          format: int64
+          type: string
         response:
           type: string
         commentary:
@@ -1162,6 +1186,18 @@ components:
           type: string
           example:
             $ref: "#/components/schemas/Subject"
+    TeamListGroupBySubject:
+      type: object
+      required:
+        - id_subject
+        - id_team
+      properties:
+        id_subject:
+          type: string
+          $ref: "#/components/schemas/Subject"
+        id_team:
+          type: string
+          $ref: "#/components/schemas/Challengers_team"
     Vote:
       type: object
       required:
