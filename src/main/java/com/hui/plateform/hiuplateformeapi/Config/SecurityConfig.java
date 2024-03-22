@@ -42,9 +42,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.DELETE,"/user/**").denyAll()
-                        .requestMatchers(HttpMethod.PUT,"/user/**").denyAll()
-                        .requestMatchers(HttpMethod.PUT,"/vote/**").denyAll()
-                        .requestMatchers(HttpMethod.DELETE,"/vote/**").denyAll()
+                        .requestMatchers(HttpMethod.PUT,"/user/**").hasAnyAuthority("Admin")
+                        .requestMatchers(HttpMethod.PUT,"/vote/**").hasAnyAuthority("Admin")
+                        .requestMatchers(HttpMethod.DELETE,"/vote/**").hasAnyAuthority("Admin")
+                        .requestMatchers(HttpMethod.GET,"/admin_only/**").hasAnyAuthority("ADMIN")
                         .requestMatchers( "/auth/**","/register","/vote/**").permitAll()
                         .anyRequest().authenticated()
 

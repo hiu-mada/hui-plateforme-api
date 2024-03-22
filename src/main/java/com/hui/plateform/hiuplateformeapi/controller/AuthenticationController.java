@@ -7,10 +7,7 @@ import com.hui.plateform.hiuplateformeapi.entity.dto.AuthenticationResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +15,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
+@CrossOrigin
 public class AuthenticationController {
 
     private final AuthenticationService service;
@@ -31,6 +29,10 @@ public class AuthenticationController {
       
     }
 
+    @GetMapping("/admin_only")
+    public ResponseEntity<String> adminTest(){
+        return ResponseEntity.ok("Hello from admin");
+    }
     @PostMapping("/authentication")
     public ResponseEntity<AuthenticationResponse> authentication(
             @RequestBody User request){

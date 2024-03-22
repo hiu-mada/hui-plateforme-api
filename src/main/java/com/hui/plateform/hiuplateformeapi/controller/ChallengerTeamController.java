@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-
 @AllArgsConstructor
+@CrossOrigin
 public class ChallengerTeamController {
     private ChallengerTeamService challengerTeamService;
 

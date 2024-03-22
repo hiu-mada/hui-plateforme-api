@@ -36,6 +36,8 @@ public class  User implements UserDetails {
     @Column(name = "id_challenger")
     private String idChallenger;
 
+    @Enumerated(value = EnumType.STRING)
+    Role role;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

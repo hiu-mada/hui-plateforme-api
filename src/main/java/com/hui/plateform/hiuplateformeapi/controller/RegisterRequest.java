@@ -1,6 +1,7 @@
 package com.hui.plateform.hiuplateformeapi.controller;
 
 
+import com.hui.plateform.hiuplateformeapi.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,4 +16,5 @@ public class RegisterRequest {
     private String username;
     private String password;
     private String  profilePicture;
+    private Role role;
 }
