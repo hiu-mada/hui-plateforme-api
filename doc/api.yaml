@@ -2,559 +2,70 @@ openapi: 3.0.3
 info:
   title: HIU-PLATEFORM-API
   description: |-
-    it's a cybersec challenge evaluation platform
-  version: 1.0.0
+    it's a cybersec challenge evaluation plateform
+  version: 3.2.0
+servers:
+  - url: http://localhost:8080
+
 paths:
-  /university:
+  /auth/register:
     post:
       tags:
-        - University
-      summary: Add a new university
-      description: Add a new university
-      operationId: addUniversity
+        - authenticate
+      summary: Register an account
       requestBody:
-        description: University object to be added
+        description: Account to register
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/University'
+              $ref: '#/components/schemas/User'
       responses:
-        '200':
+        200:
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/University'
-        '405':
-          description: Invalid input
-    get:
-      tags:
-        - University
-      summary: Retrieve university
-      description: Retrieve a list of university
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/University'
-        '400':
-          description: Invalid status value
-  /univerisity/{id}:
-    get:
-      tags:
-        - University
-      summary: Retrieve university
-      description: find an university
-      parameters:
-        - in: path
-          name: id
-          required: true
-          description: ID of the university to find
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/University'
-        '400':
-          description: Invalid status value
-    put:
-      tags:
-        - University
-      summary: Update an university by ID
-      description: Update an university by ID
-      operationId: updateUniversity
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: ID of the university to be updated
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        description: University object to update
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/University"
-      responses:
-        '200':
-          description: Operation successful, the university has been updated
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/University"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/University"
-        '500':
-          description: Oops, there's an error with the server
-    delete:
-      tags:
-        - University
-      summary: Delete an university by ID
-      description: Delete an university by ID
-      operationId: deleteUniversity
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: ID of the university to be deleted
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Operation successful, the university has been deleted
-        '404':
-          description: University not found
-        '500':
-          description: Oops, there's an error with the server
-  /discipline:
+                $ref: '#/components/schemas/User'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /auth/authentication:
     post:
       tags:
-        - Discipline
-      summary: Add a new discipline
-      description: Add a new discipline
-      operationId: addDiscipline
+        - authenticate
+      summary: authentication with an account
       requestBody:
-        description: Discipline object to be added
+        description: Account to authenticate
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Discipline'
+              $ref: '#/components/schemas/User'
       responses:
-        '200':
+        200:
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Discipline'
-        '405':
-          description: Invalid input
-    get:
-      tags:
-        - Discipline
-      summary: Retrieve discipline
-      description: Retrieve a list of discplines
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Discipline'
-        '400':
-          description: Invalid status value
-  /discipline/{id}:
-    get:
-      tags:
-        - Discipline
-      summary: Retrieve discipline
-      description: find a discipline
-      parameters:
-        - in: path
-          name: id
-          required: true
-          description: ID of the discipline to find
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Discipline'
-        '400':
-          description: Invalid status value
-    put:
-      tags:
-        - Discipline
-      summary: Update a discipline by ID
-      description: Update a discipline by ID
-      operationId: updateDiscipline
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: ID of the discipline to be updated
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        description: Discipline object to update
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Discipline"
-      responses:
-        '200':
-          description: Operation successful, the discipline has been updated
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Discipline"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Discipline"
-        '500':
-          description: Oops, there's an error with the server
-    delete:
-      tags:
-        - Discipline
-      summary: Delete a discipline by ID
-      description: Delete a discipline by ID
-      operationId: deleteDiscipline
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: ID of the discipline to be deleted
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Operation successful, the discipline has been deleted
-        '404':
-          description: discipline not found
-        '500':
-          description: Oops, there's an error with the server
-  /subject:
-    post:
-      tags:
-        - Subject
-      summary: Add a new subject
-      description: Add a new subject
-      operationId: addSubject
-      requestBody:
-        description: Subject object to be added
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Subject'
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Subject'
-        '405':
-          description: Invalid input
-    get:
-      tags:
-        - Subject
-      summary: Retrieve subjects
-      description: Retrieve a list of subjects
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Subject'
-        '400':
-          description: Invalid status value
-  /subject/{id}:
-    get:
-      tags:
-        - Subject
-      summary: Retrieve subject
-      description: find an subject
-      parameters:
-        - in: path
-          name: id
-          required: true
-          description: ID of the subject to find
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Subject'
-        '400':
-          description: Invalid status value
-    put:
-      tags:
-        - Subject
-      summary: Update a subject by ID
-      description: Update a subject by ID
-      operationId: updateSubject
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: ID of the subject to be updated
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        description: Subject object to update
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Subject"
-      responses:
-        '200':
-          description: Operation successful, the subject has been updated
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Subject"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Subject"
-        '500':
-          description: Oops, there's an error with the server
-    delete:
-      tags:
-        - Subject
-      summary: Delete a subject by ID
-      description: Delete a subject by ID
-      operationId: deleteSubject
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: ID of the subject to be deleted
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Operation successful, the subject has been deleted
-        '404':
-          description: Subject not found
-        '500':
-          description: Oops, there's an error with the server
-  /team:
-    post:
-      tags:
-        - Challengers team
-      summary: Add a team user
-      description: Add a new team
-      operationId: addTeam
-      requestBody:
-        description: Team object to be added
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Challengers_team'
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Challengers_team'
-        '405':
-          description: Invalid input
-    get:
-      tags:
-        - Challengers team
-      summary: Retrieve teams
-      description: Retrieve a list of teams
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Challengers_team'
-        '400':
-          description: Invalid status value
-  /team/{id}:
-    get:
-      tags:
-        - Challengers team
-      summary: Retrieve team
-      description: find a team
-      parameters:
-        - in: path
-          name: id
-          required: true
-          description: ID of the team to find
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Challengers_team'
-        '400':
-          description: Invalid status value
-    put:
-      tags:
-        - Challengers team
-      summary: Update a team by ID
-      description: Update a team by ID
-      operationId: updateTeam
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: ID of the team to be updated
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        description: team object to update
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Challengers_team"
-      responses:
-        '200':
-          description: Operation successful, the team has been updated
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Challengers_team"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Challengers_team"
-        '500':
-          description: Oops, there's an error with the server
-    delete:
-      tags:
-        - Challengers team
-      summary: Delete a team by ID
-      description: Delete a team by ID
-      operationId: deleteTeam
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: ID of the team to be deleted
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Operation successful, the team has been deleted
-        '404':
-          description: Team not found
-        '500':
-          description: Oops, there's an error with the server
-  /response:
-    post:
-      tags:
-        - Response
-      summary: Add a new response
-      description: Add a new response
-      operationId: addResponse
-      requestBody:
-        description: Response object to be added
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Response'
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Response'
-        '405':
-          description: Invalid input
-    get:
-      tags:
-        - Response
-      summary: Retrieve responses
-      description: Retrieve a list of responses
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Response'
-        '400':
-          description: Invalid status value
-  /vote:
-    post:
-      tags:
-        - Vote
-      summary: Add a new vote
-      description: Add a new vote
-      operationId: addVote
-      requestBody:
-        description: Vote object to be added
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Vote'
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Vote'
-        '405':
-          description: Invalid input
-    get:
-      tags:
-        - Vote
-      summary: Retrieve vote
-      description: Retrieve a list of vote
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Vote'
-        '400':
-          description: Invalid status value
+                $ref: '#/components/schemas/User'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
   /user:
     post:
       tags:
@@ -576,13 +87,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-        '405':
-          description: Invalid input
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
     get:
       tags:
         - User
       summary: Retrieve users
-      description: Retrieve a list of users
+      description: Retrieve a list of users for simple user
       responses:
         '200':
           description: Successful operation
@@ -592,8 +111,41 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/User'
-        '400':
-          description: Invalid status value
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /user/admin:
+    get:
+      tags:
+        - User
+      summary: Retrieve users with administrator permission
+      description: Retrieve a list of users by administrator acces
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
   /user/{id}:
     get:
       tags:
@@ -606,22 +158,29 @@ paths:
           required: true
           description: ID of the user to find
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'
-        '400':
-          description: Invalid status value
+                $ref: '#/components/schemas/User'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
     put:
       tags:
         - User
+      security:
+        - jwt-token: [ ]
       summary: Update an user by ID
       description: Update an user by ID
       operationId: updateUser
@@ -631,8 +190,7 @@ paths:
           required: true
           description: ID of the user to be updated
           schema:
-            type: integer
-            format: int64
+            type: string
       requestBody:
         description: User object to update
         required: true
@@ -650,11 +208,21 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/User"
-        '500':
-          description: Oops, there's an error with the server
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
     delete:
       tags:
         - User
+      security:
+        - jwt-token: [ ]
       summary: Delete a user by ID
       description: Delete a user by ID
       operationId: deleteUser
@@ -664,15 +232,876 @@ paths:
           required: true
           description: ID of the user to be deleted
           schema:
+            type: string
+      responses:
+        '200':
+          description: Operation successful, the user has been deleted
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /team:
+    post:
+      tags:
+        - Challengers team
+      summary: Add a team user
+      description: Add a new team
+      operationId: addTeam
+      requestBody:
+        description: Team object to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Challengers_team'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Challengers_team'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+    get:
+      tags:
+        - Challengers team
+      summary: Retrieve teams
+      description: Retrieve a list of teams
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Challengers_team'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /team/{id}:
+    get:
+      tags:
+        - Challengers team
+      summary: Retrieve team
+      description: find a team
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the team to find
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Challengers_team'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Challengers team
+      security:
+        - jwt-token: [ ]
+      summary: Update a team by ID
+      description: Update a team by ID
+      operationId: updateTeam
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the team to be updated
+          schema:
+            type: string
+      requestBody:
+        description: team object to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Challengers_team"
+      responses:
+        '200':
+          description: Operation successful, the team has been updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Challengers_team"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Challengers_team"
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Challengers team
+      security:
+        - jwt-token: [ ]
+      summary: Delete a team by ID
+      description: Delete a team by ID
+      operationId: deleteTeam
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the team to be deleted
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Operation successful, the team has been deleted
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /disciplines:
+    post:
+      tags:
+        - Discipline
+      security:
+        - jwt-token: [ ]
+      summary: Add a new discipline
+      description: Add a new discipline
+      operationId: addDiscipline
+      requestBody:
+        description: Discipline object to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Discipline'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Discipline'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+    get:
+      tags:
+        - Discipline
+      summary: Retrieve discipline
+      description: Retrieve a list of discplines
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Discipline'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /discipline/{id}:
+    get:
+      tags:
+        - Discipline
+      summary: Retrieve discipline
+      description: find a discipline
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the discipline to find
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Discipline'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Discipline
+      security:
+        - jwt-token: [ ]
+      summary: Update a discipline by ID
+      description: Update a discipline by ID
+      operationId: updateDiscipline
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the discipline to be updated
+          schema:
+            type: string
+      requestBody:
+        description: Discipline object to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Discipline"
+      responses:
+        '200':
+          description: Operation successful, the discipline has been updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Discipline"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Discipline"
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Discipline
+      security:
+        - jwt-token: [ ]
+      summary: Delete a discipline by ID
+      description: Delete a discipline by ID
+      operationId: deleteDiscipline
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the discipline to be deleted
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Operation successful, the discipline has been deleted
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /response:
+    post:
+      tags:
+        - Response
+      summary: Add a new response
+      description: Add a new response
+      operationId: addResponse
+      requestBody:
+        description: Response object to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Response'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+    get:
+      tags:
+        - Response
+      summary: Retrieve responses
+      description: Retrieve a list of responses
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Response'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /response/{id}:
+    get:
+      tags:
+        - Response
+      summary: Retrieve team's responses
+      description: Retrieve a list of team's responses
+      parameters:
+        - in: path
+          name: id
+          description: team's id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Response'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /response/team-by-subject:
+    get:
+      tags:
+        - Response
+      summary: Get team list group by subject they answered
+      description: Get team list group by subject they answered
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamListGroupBySubject'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /subject:
+    post:
+      tags:
+        - Subject
+      security:
+        - jwt-token: [ ]
+      summary: Add a new subject
+      description: Add a new subject
+      operationId: addSubject
+      requestBody:
+        description: Subject object to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subject'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subject'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+    get:
+      tags:
+        - Subject
+      summary: Retrieve subjects
+      description: Retrieve a list of subjects
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subject'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /subject/{id}:
+    get:
+      tags:
+        - Subject
+      summary: Retrieve subject
+      description: find an subject
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the subject to find
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subject'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Subject
+      security:
+        - jwt-token: [ ]
+      summary: Update a subject by ID
+      description: Update a subject by ID
+      operationId: updateSubject
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the subject to be updated
+          schema:
+            type: string
+      requestBody:
+        description: Subject object to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Subject"
+      responses:
+        '200':
+          description: Operation successful, the subject has been updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Subject"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Subject"
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Subject
+      summary: Delete a subject by ID
+      description: Delete a subject by ID
+      operationId: deleteSubject
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the subject to be deleted
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Operation successful, the subject has been deleted
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /university:
+    post:
+      tags:
+        - University
+      summary: Add a new university
+      description: Add a new university
+      operationId: addUniversity
+      requestBody:
+        description: University object to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/University'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/University'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+    get:
+      tags:
+        - University
+      summary: Retrieve university
+      description: Retrieve a list of university
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/University'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /univerisity/{id}:
+    get:
+      tags:
+        - University
+      summary: Retrieve university
+      description: find an university
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the university to find
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/University'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - University
+      security:
+        - jwt-token: [ ]
+      summary: Update an university by ID
+      description: Update an university by ID
+      operationId: updateUniversity
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the university to be updated
+          schema:
+            type: string
+      requestBody:
+        description: University object to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/University"
+      responses:
+        '200':
+          description: Operation successful, the university has been updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/University"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/University"
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - University
+      security:
+        - jwt-token: [ ]
+      summary: Delete an university by ID
+      description: Delete an university by ID
+      operationId: deleteUniversity
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the university to be deleted
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Operation successful, the university has been deleted
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /vote:
+    post:
+      tags:
+        - Vote
+      summary: Add a new vote
+      description: Add a new vote
+      operationId: addVote
+      requestBody:
+        description: Vote object to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vote'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vote'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+    get:
+      tags:
+        - Vote
+      summary: Retrieve vote
+      description: Retrieve a list of vote
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vote'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /vote/count-by-team:
+    get:
+      tags:
+        - Vote
+      summary: Retrieve vote filtered by team
+      description: Retrieve a list of vote filtered by team
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Count_vote"
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /vote/count-by-team/{id}:
+    get:
+      tags:
+        - Vote
+      summary: Retrieve team's vote
+      description: Retrieve team's vote
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: id of challenger team
+          schema:
             type: integer
             format: int64
       responses:
         '200':
-          description: Operation successful, the user has been deleted
-        '404':
-          description: User not found
-        '500':
-          description: Oops, there's an error with the server
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Count_vote"
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+
 components:
   schemas:
     User:
@@ -682,6 +1111,7 @@ components:
         - user_name
         - email
         - password
+        - role
       properties:
         id:
           type: integer
@@ -695,10 +1125,14 @@ components:
         profile_picture:
           type: string
           format: byte
-        id_challenger:
+        id_team:
           type: string
           example:
             $ref: "#/components/schemas/Challengers_team"
+        role:
+          type: string
+          description: role of the user by default user
+          example: "USER, ADMIN"
     University:
       type: object
       required:
@@ -769,8 +1203,7 @@ components:
         - response
       properties:
         id:
-          type: integer
-          format: int64
+          type: string
         response:
           type: string
         commentary:
@@ -783,12 +1216,26 @@ components:
           type: string
           example:
             $ref: "#/components/schemas/Subject"
+    TeamListGroupBySubject:
+      type: object
+      required:
+        - id_subject
+        - id_team
+      properties:
+        id_subject:
+          type: string
+          $ref: "#/components/schemas/Subject"
+        id_team:
+          type: string
+          $ref: "#/components/schemas/Challengers_team"
     Vote:
       type: object
       required:
         - id_challenger
         - id_user
       properties:
+        id:
+          type: string
         id_user:
           type: string
           example:
@@ -797,3 +1244,81 @@ components:
           type: string
           example:
             $ref: "#/components/schemas/Challengers_team"
+    Count_vote:
+      type: object
+      properties:
+        id_challenger:
+          type: string
+          example:
+            $ref: "#/components/schemas/Challengers_team"
+        vote:
+          type: integer
+    Excepetion:
+      type: object
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+    BadRequestException:
+      allOf:
+        - $ref: '#/components/schemas/Excepetion'
+      example:
+        type: BadRequestException
+        message: Bad request
+    NoAuthorizedException:
+      allOf:
+        - $ref: '#/components/schemas/Excepetion'
+      example:
+        type: NotAuthorizedException
+        message: Not authorized
+    RessourceNotFoundException:
+      allOf:
+        - $ref: '#/components/schemas/Excepetion'
+      example:
+        type: RessourceNOtFoundException
+        message: Ressource of type <T> identified by <I> not found
+    TooManyRequestsException:
+      allOf:
+        - $ref: '#/components/schemas/Excepetion'
+      example:
+        type: TooManyRequestsException
+        message: Too many requests
+    InternalServerException:
+      allOf:
+        - $ref: '#/components/schemas/Excepetion'
+      example:
+        type: InternalServerException
+        message: Unexpected error
+  responses:
+    '400':
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestException'
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NoAuthorizedException'
+    '404':
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RessourceNotFoundException'
+    '429':
+      description: Too many requests to the API
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TooManyRequestsException'
+    '500':
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerException'
+

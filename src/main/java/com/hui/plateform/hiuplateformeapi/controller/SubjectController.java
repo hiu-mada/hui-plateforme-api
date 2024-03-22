@@ -2,39 +2,39 @@ package com.hui.plateform.hiuplateformeapi.controller;
 
 import com.hui.plateform.hiuplateformeapi.Service.SubjectService;
 import com.hui.plateform.hiuplateformeapi.entity.Subject;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/subject")
+@AllArgsConstructor
 public class SubjectController {
-    @Autowired
     private SubjectService subjectService;
 
-    @GetMapping("/")
+    @GetMapping("/subject")
     public List<Subject> getAllSubject(){
         return subjectService.getAllSubject();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/subject/{id}")
     public Subject getSubjectById(@PathVariable String id){
         return  subjectService.getSubjectById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("/subject/")
     public Subject createSubject(@RequestBody Subject subject){
         return subjectService.createUpdateSubject(subject);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/subject/{id}")
     public Subject updateSubject(@PathVariable String id, @RequestBody Subject subject){
         subject.setId(id);
         return  subjectService.createUpdateSubject(subject);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("subject/{id}")
     public void deleSubjectByid(@PathVariable String id){
         subjectService.deleteSubjectById(id);
     }

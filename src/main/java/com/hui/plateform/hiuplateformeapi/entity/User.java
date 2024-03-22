@@ -13,9 +13,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 @Table(name = "user_table")
 public class  User implements UserDetails {
     @Id
@@ -38,6 +36,9 @@ public class  User implements UserDetails {
     @Column(name = "id_challenger")
     private String idChallenger;
 
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "role")
+    Role role;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

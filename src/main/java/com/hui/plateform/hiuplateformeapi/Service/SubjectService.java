@@ -2,14 +2,15 @@ package com.hui.plateform.hiuplateformeapi.Service;
 
 import com.hui.plateform.hiuplateformeapi.entity.Subject;
 import com.hui.plateform.hiuplateformeapi.repository.SubjectRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class SubjectService {
-    @Autowired
     private SubjectRepository subjectRepository;
 
     public List<Subject> getAllSubject(){

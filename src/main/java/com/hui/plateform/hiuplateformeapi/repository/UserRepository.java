@@ -1,10 +1,18 @@
 package com.hui.plateform.hiuplateformeapi.repository;
 
 import com.hui.plateform.hiuplateformeapi.entity.User;
+import com.hui.plateform.hiuplateformeapi.entity.dto.UserChallenger;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface UserRepository extends JpaRepository<User, String> {
-  Optional<User> findByEmail(String email);
+  Optional<User>findByEmail(String email);
+  List<User> findAll();
+  @Query ("select u.email, u.username, u.profilePicture, u.idChallenger from User u")
+  List<UserChallenger> getAllUserForChallenger();
 }

@@ -1,5 +1,4 @@
-package com.hui.plateform.hiuplateformeapi.controller;
-
+package com.hui.plateform.hiuplateformeapi.entity.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,10 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
+@Builder
+public class UserChallenger {
     private String email;
-    private String password;
+    private String username;
+    private String profilePicture;
+    private String idTeam;
 }
