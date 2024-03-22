@@ -1111,6 +1111,7 @@ components:
         - user_name
         - email
         - password
+        - role
       properties:
         id:
           type: integer
@@ -1128,6 +1129,10 @@ components:
           type: string
           example:
             $ref: "#/components/schemas/Challengers_team"
+        role:
+          type: string
+          description: role of the user by default user
+          example: "USER, ADMIN"
     University:
       type: object
       required:
