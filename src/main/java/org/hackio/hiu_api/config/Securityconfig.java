@@ -53,7 +53,7 @@ public class Securityconfig {
       .cors().and()
       .csrf().disable()
       .authorizeHttpRequests(auth -> auth
-        .requestMatchers(HttpMethod.GET, "/ping").permitAll()
+        .requestMatchers(HttpMethod.GET,"/ping").permitAll()
           .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
           .anyRequest().authenticated())
       .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
