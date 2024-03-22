@@ -49,8 +49,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET,"/admin_only/**").hasAnyAuthority("ADMIN")
                         .requestMatchers( "/auth/**","/register","/vote/**").permitAll()
             .requestMatchers(HttpMethod.PUT,"/user/**").denyAll()
-                        .requestMatchers(HttpMethod.PUT,"/vote/**").denyAll()
-                        .requestMatchers(HttpMethod.DELETE,"/vote/**").denyAll()
+                        .requestMatchers(HttpMethod.PUT,"/vote/**").hasAnyAuthority("Admin")
+                        .requestMatchers(HttpMethod.DELETE,"/vote/**").hasAnyAuthority("Admin")
                         .requestMatchers(HttpMethod.GET, "/user/**" ).permitAll()
                         .requestMatchers( "/auth/**","/vote/**").permitAll()
 
