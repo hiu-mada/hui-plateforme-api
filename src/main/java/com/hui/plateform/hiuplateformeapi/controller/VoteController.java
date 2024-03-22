@@ -25,10 +25,6 @@ public class VoteController {
     public Vote getVoteById(@PathVariable String id){
         return voteService.getVoteById(id);
     }
-    @DeleteMapping("/vote/{id}")
-    public void  deleteVoteById(@PathVariable String id){
-        voteService.deleteVoteById(id);
-    }
     @GetMapping("/vote/count-by-team")
     public List<Object[]> countVotesByIdTeam() {
         return voteService.getVotePerTeam();
