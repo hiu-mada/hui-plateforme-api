@@ -2,45 +2,49 @@ package com.hui.plateform.hiuplateformeapi.controller;
 
 import com.hui.plateform.hiuplateformeapi.Service.UserService;
 import com.hui.plateform.hiuplateformeapi.entity.User;
+import com.hui.plateform.hiuplateformeapi.entity.dto.UserChallenger;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/user")
 public class UserController {
     private UserService userService;
 
-    @GetMapping("/user")
+    @GetMapping("/admin")
     public List<User> getAllUser(){
         return userService.getAllUser();
     }
-    @GetMapping("/user/{id}")
+    @GetMapping("/")
+    public List<UserChallenger> getAllUserForChallenger(){
+        return userService.getAllUserForChallenger();
+    }
+    @GetMapping("/{id}")
     public User getUserById(@PathVariable("id") String id){
         return userService.getUserById(id);
     }
 
-    @PostMapping("/user")
+    @PostMapping("/")
     public User createUser(@RequestBody User user){
         return userService.createUpdateUser(user);
     }
 
-    @PutMapping("/user/{id}")
+    @PutMapping("/{id}")
     public User updateUser(@PathVariable("id") String id, @RequestBody User user, Authentication authentication){
         String currentUserId = getCurrentUserId(authentication);
         if (id.equals(user.getId()) && id.equals(currentUserId)) {
-            userService.createUpdateUser(user);
+           return userService.createUpdateUser(user);
         }
         else{
             throw new IllegalStateException("Cannot update another user");
         }
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUserById(@PathVariable("id") String id, Authentication authentication){
         String currentUserId = getCurrentUserId(authentication);
         if (!id.equals(currentUserId)) {

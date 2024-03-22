@@ -1,6 +1,7 @@
 package com.hui.plateform.hiuplateformeapi.Service;
 
 import com.hui.plateform.hiuplateformeapi.entity.User;
+import com.hui.plateform.hiuplateformeapi.entity.dto.UserChallenger;
 import com.hui.plateform.hiuplateformeapi.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class UserService {
 
     public List<User> getAllUser(){
         return userRepository.findAll();
+    }
+    public List<UserChallenger> getAllUserForChallenger(){
+        return userRepository.getAllUserForChallenger();
     }
     public User getUserById(String id){
         return userRepository.getReferenceById(id);

@@ -101,7 +101,32 @@ paths:
       tags:
         - User
       summary: Retrieve users
-      description: Retrieve a list of users
+      description: Retrieve a list of users for simple user
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+  /user/admin:
+    get:
+      tags:
+        - User
+      summary: Retrieve users with administrator permission
+      description: Retrieve a list of users by administrator acces
       responses:
         '200':
           description: Successful operation
