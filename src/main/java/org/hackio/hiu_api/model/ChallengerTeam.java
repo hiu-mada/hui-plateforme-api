@@ -32,4 +32,6 @@ public class ChallengerTeam {
   @OneToMany(mappedBy = "challengerTeam")
   private Set<Subject> subjects;
 
+  @OneToMany(mappedBy = "challengerTeam")
+  private Set<Vote> votes;
 }

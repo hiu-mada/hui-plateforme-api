@@ -20,4 +20,8 @@ public class Vote {
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;
+
+  @ManyToOne
+  @JoinColumn(name = "challenger_team_id")
+  private ChallengerTeam challengerTeam;
 }
