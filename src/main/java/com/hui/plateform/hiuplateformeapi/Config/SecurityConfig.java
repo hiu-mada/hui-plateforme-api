@@ -41,11 +41,16 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.DELETE,"/user/**").denyAll()
-
-                        .requestMatchers(HttpMethod.PUT,"/user/**").hasAnyAuthority("Admin")
+                        .requestMatchers(HttpMethod.PUT,"/user/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/discipline/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/discipline/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/discipline/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/response/**").hasAnyAuthority("ADMIN")
                         .requestMatchers(HttpMethod.GET,"/**/admin/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/university/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/university/**").hasAnyAuthority("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/user/**" ).permitAll()
+                        .requestMatchers(HttpMethod.GET, "/subject/**").permitAll()
                         .requestMatchers( "/auth/**","/vote/**").permitAll()
                         .anyRequest().authenticated()
 
