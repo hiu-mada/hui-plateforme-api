@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin
 public class DisciplineController {
     private DisciplineService disciplineService;
 
